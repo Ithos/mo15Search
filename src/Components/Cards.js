@@ -70,7 +70,7 @@ const Cards = ({ scrollPosition, bannedCards, setlist, cardTypes, supertypes, cr
     useEffect(() => {
         if(setlist)
             setSetFilter(
-            URL_OPEN_PARENTHESIS +  setlist.map( s => `${URL_ADD_SET}${s.code}`).join(URL_ADD_OR_CONDITION) + URL_CLOSE_PARENTHESIS
+            URL_ADD_CONDITION + URL_OPEN_PARENTHESIS + setlist.map( s => `${URL_ADD_SET}${s.code}`).join(URL_ADD_OR_CONDITION) + URL_CLOSE_PARENTHESIS
         );
     }, [setlist]);
 
@@ -355,7 +355,6 @@ const groupedOptions = [
                         scryfallSearch += cardSetsString;
 
                         let result = await axios.get(scryfallSearch).catch( err => err.status !== 404 ? setError(err) : setError(null) ).then( res => (res && res.data) ? res.data : null );
-
 
                         setCardSearchObject( result );
 
